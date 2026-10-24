@@ -39,7 +39,9 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Deploy to Staging Container
+            - name: Deploy to Staging Container
         run: |
           echo "Approval granted! Deploying to staging stack..."
-          docker-compose up -d
+          docker --version
+          docker compose version
+          docker compose up -d
