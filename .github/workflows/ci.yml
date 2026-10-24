@@ -30,7 +30,7 @@ jobs:
         run: mvn test
 
 
-  deploy-staging:
+    deploy-staging:
     needs: build-and-validate
     runs-on: ubuntu-latest
     environment: staging
@@ -39,9 +39,12 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-            - name: Deploy to Staging Container
+      - name: Check Docker Compose
         run: |
-          echo "Approval granted! Deploying to staging stack..."
           docker --version
           docker compose version
+
+      - name: Deploy to Staging Container
+        run: |
+          echo "Approval granted! Deploying to staging stack..."
           docker compose up -d
